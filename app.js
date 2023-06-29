@@ -1,35 +1,46 @@
-let precio
-let raqueta;
+class raqueta{
+    nombre;
+    precio;
+    marca;
+
+    constructor(nombre, precio, marca){
+        this.nombre = nombre;
+        this.precio = precio;
+        this. marca = marca;
+    }
+}
+
+const raquetas = [];
 let cantidad;
 let total = 0;
 let opcion;
 let nombreUsuario
+let seguir
+
+
+raquetas.push( new raqueta ('Pro Staff V13', '25000', 'Wilson'))
+raquetas.push( new raqueta ('Speed 2022', '30000', 'Head'))
+raquetas.push( new raqueta ('Aero Pro Drive', '35000', 'Babolat'))
+raquetas.push( new raqueta ('Graphene', '28000', 'Head'))
 
 alert("Bienvenidos a TenisCenter, para continuar presione aceptar")
-function totalCarrito(total, precio, cantidad){
-    return total + precio * cantidad
-}
 nombreUsuario = prompt("ingrese su nombre")
-
-
-
 do {
-    raqueta = parseInt(prompt("elija el número de la raqueta que desea comprar:" + "\n" + "1- Wilson Pro Staff V13" + "\n" + "2- Head Speed 2022" + "\n" + "3- Babolat Aero Pro Drive" + "\n" + "4- Head Graphene")) 
-    while (raqueta >= 5) {
-        raqueta = prompt("Por favor ingrese una opción válida")
+    const listaStringRaquetas = raquetas.map(
+        (raqueta, index) => `
+                        ${index + 1}: ${raqueta.nombre} precio: ${raqueta.precio}
+    `)
+    opcion = parseInt(prompt("elija el número de la raqueta que desea comprar:" + "\n" + listaStringRaquetas.join("")));
+    while (opcion <= 0 || opcion > raquetas.length) {
+        opcion = parseInt(prompt("Por favor ingrese una opción válida" + "\n" + listaStringRaquetas.join("")));
     }
-    precio = Number(prompt("Elija un precio"))
-
-    while (precio <= 0) {
-        precio = prompt("Por favor ingrese un precio válido")
-    }
-
-    cantidad = parseInt(prompt("elija la cantidad"))
+    cantidad = parseInt(prompt("elija la cantidad"));
     while (cantidad <= 0){
-        cantidad = prompt("Por favor ingrese una cantidad válida")
+        cantidad = parseInt(prompt("Por favor ingrese una cantidad válida"));
     }
-    opcion = prompt ("Desea agregar mas productos? si/no")
-    total = totalCarrito (total, precio, cantidad)
-}   while (opcion == "si")
+    total = total + raquetas[opcion - 1].precio*cantidad;
+    seguir = prompt ("Desea agregar mas productos? si/no");
+}  
+while (seguir == "si");
 
-alert (nombreUsuario + " el total de su compra es de " + total + " pesos")
+alert (nombreUsuario + " el total de su compra es de " + total + " pesos");
