@@ -1,0 +1,45 @@
+.tituloPrincipal{
+    display: block;
+    margin-top: 70px;
+    font-size: bold;
+    text-align: center;
+    color: red;
+    text-decoration: underline;
+}
+.tituloSecundario{
+    text-align: center;
+    margin-top: 40px;
+    color: blue;
+    text-decoration: underline;
+}
+.tituloFormulario{
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.fotoPrincipal{
+    background-image: url(../assets/img/raquetas.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.estiloFormulario{
+    text-align: center;
+    margin-top: 90px;
+    margin-left: 700px;
+}
+.table{
+    margin-left: 350px;
+    margin-top: 50px;
+}
+.botonOrdenar{
+    margin-left: 500px;
+}
+.botonVaciar{
+    margin-left: 400px;
+}
+.botonAgregar{
+    margin-left: 35px;
+}

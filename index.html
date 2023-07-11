@@ -1,21 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto JavaScript</title>
+    <link href="./css/style.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>TennisCenter</title>
+    
 </head>
-<body>
-    <header class="imagen">
 
-    </header>
-    <main>
 
-    </main>
-    <footer>
+<body class="fotoPrincipal">
+    <div>
+        <h1 class="tituloPrincipal">BIENVENIDO A TENNIS CENTER</h1>
+    </div>
+    <div>
+        <h2 class="tituloSecundario">Aqui encontraras las mejores raquetas para que puedas mejorar tu tennis y convertirte en un jugador profesional</h2>
+    </div>
+    <div class="container m-3 row">
+        <div class="container m-1 col">
+            <form class="estiloFormulario" id="agregar">
+                <label for="productos" class="tituloFormulario">Elija las Raquetas que desee</q></label>
 
-    </footer>
-<script src="./js/app.js"></script> 
+                <select id="productos" class="form-control"></select>
+                <br>
+                <button id="agregar" class="botonAgregar btn btn-success">Agregar</button>
+            </form>
+        </div>
+        <div class=" estiloTabla container m-1">
+            <table class="table table-success table-striped">
+                <thead class="thead-primary">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Operacion</th>
+                    </tr>
+                </thead>
+                <tbody id="items">
+                </tbody>
+                <tfoot class="thead-primary">
+                    <tr>
+                        <th>Total: </th>
+                        <th></th>
+                        <th id="total"></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="container m-1">
+            <button id="ordenar" class="botonOrdenar btn btn-primary">
+                Ordenar
+            </button>
+            <button id="vaciar" class="botonVaciar btn btn-primary">
+                Vaciar
+            </button>
+        </div>
+    </div>
+    <script src="./js/app.js"></script>
+    <script src="./js/producto.js"></script>
+    <script src="./js/raqueta.js"></script>
 </body>
-</html> 
+
+</html>
