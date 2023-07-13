@@ -41,7 +41,7 @@ localStorage.setItem("inventario", JSON.stringify(inventario));
 
 const tabla = document.getElementById('items');
 const seleccionarProductos = document.getElementById('productos');
-const agregarItem = document.getElementById('agregar');
+const agregarRaqueta = document.getElementById('agregar');
 const total = document.getElementById('total');
 
 function traerRaqueta(){
@@ -52,8 +52,8 @@ function traerRaqueta(){
 
 function dropdown() {
     inventario.forEach(({nombre,precio},index) => {
-    let opcion = document.createElement ("opcion");
-    opcion.textContent = `${nombre}:${precio}`;
+    let opcion = document.createElement ("option");
+    opcion.textContent = `${nombre}: $${precio}`;
     opcion.value = index;
     seleccionarProductos.appendChild(opcion);
  })
@@ -72,7 +72,7 @@ function filaNueva(producto, index) {
     let td = document.createElement("td")
 
     td.classList.add ("text-white");
-    td.textContent = producto.Raqueta.nombre;
+    td.textContent = item.Raqueta.nombre;
     fila.appendChild(td);
 
     td.classList.add('text-white');
@@ -82,7 +82,7 @@ function filaNueva(producto, index) {
   
     td.classList.add('text-white');
     td = document.createElement('td');
-    td.textContent = producto.Raqueta.precio;
+    td.textContent = item.Raqueta.precio;
     fila.appendChild(td);
 
     td = document.createElement('td');
@@ -90,16 +90,22 @@ function filaNueva(producto, index) {
     botonEliminar.classList.add('btn', 'btn-danger');
     botonEliminar.textContent = 'Eliminar Articulo';
 
+    botonEliminar.onclick = () => {
+        carrito.splice (index,1);
+        actualizarTabla();
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+    }
+
     td.appendChild(botonEliminar);
     fila.appendChild(td);
-    tabla.appendChild(row);
+    tabla.appendChild(fila);
 
-    total.textContent = carrito.reduce((acc,item) => acc + producto.Raqueta.precio * Raqueta.cantidad, 0)
+    total.textContent = carrito.reduce((acc,item) => acc + item.producto.Raqueta.precio * Raqueta.cantidad, 0)
 }
 
 function escucharEventos (){
     document.addEventListener("DOMContentLoaded", traerRaqueta);
-    agregarItem.addEventListener("submit", (e) =>{
+    agregarRaqueta.addEventListener("submit", (e) =>{
         e.preventDefault();
         const raquetaSeleccionada = inventario[+seleccionarProductos.value];
         const indiceCarrito = carrito.findIndex ((producto) => producto.raqueta.nombre === raquetaSeleccionada.nombre);
