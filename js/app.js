@@ -61,28 +61,29 @@ function dropdown() {
 
 function actualizarTabla(){
     tabla.innerHTML = ""
-    tabla.innerText = 0
-    carrito.forEach((Producto, index) => {
-        filaNueva(Producto, index);
+    total.innerText = 0
+    carrito.forEach((item, index) => {
+        filaNueva(item, index);
     })
 }
 
-function filaNueva(producto, index) {
+function filaNueva(item, index) {
     const fila = document.createElement("tr")
     let td = document.createElement("td")
 
-    td.classList.add ("text-white");
-    td.textContent = item.Raqueta.nombre;
+    td.classList.add ("text-black");
+    td.textContent = item.nombre;
     fila.appendChild(td);
 
-    td.classList.add('text-white');
+
+    td.classList.add('text-black');
     td = document.createElement('td');
-    td.textContent = Raqueta.cantidad;
+    td.textContent = item.cantidad;
     fila.appendChild(td);
   
-    td.classList.add('text-white');
+    td.classList.add('text-black');
     td = document.createElement('td');
-    td.textContent = item.Raqueta.precio;
+    td.textContent = item.precio;
     fila.appendChild(td);
 
     td = document.createElement('td');
@@ -100,24 +101,24 @@ function filaNueva(producto, index) {
     fila.appendChild(td);
     tabla.appendChild(fila);
 
-    total.textContent = carrito.reduce((acc,item) => acc + item.producto.Raqueta.precio * Raqueta.cantidad, 0)
+    total.textContent = carrito.reduce((acc,item) => acc + item.precio * item.cantidad, 0);
+    
 }
 
-function escucharEventos (){
-    document.addEventListener("DOMContentLoaded", traerRaqueta);
-    agregarRaqueta.addEventListener("submit", (e) =>{
-        e.preventDefault();
-        const raquetaSeleccionada = inventario[+seleccionarProductos.value];
-        const indiceCarrito = carrito.findIndex ((producto) => producto.raqueta.nombre === raquetaSeleccionada.nombre);
-        if (indiceCarrito !== 1) {
-            carrito[indiceCarrito].cantidad++;
-        } else{
-            const item = new item(raquetaSeleccionada,1);
-            carrito.push(item);
-        }
-        actualizarTabla();
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-    });
+function escucharEventos() {
+	document.addEventListener("DOMContentLoaded", traerRaqueta);
+	agregarRaqueta.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const raquetaSeleccionada = inventario[+seleccionarProductos.value];
+		const producto = carrito.find((producto) => producto.nombre === raquetaSeleccionada.nombre);
+		if (producto) {
+			producto.cantidad++;
+		} else {
+			const item = new Raqueta(raquetaSeleccionada, 1);
+			carrito.push(item);
+		}
+		actualizarTabla();
+		localStorage.setItem("carrito", JSON.stringify(carrito));
+	});
 }
-
 escucharEventos();
