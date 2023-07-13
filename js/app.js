@@ -62,8 +62,8 @@ function dropdown() {
 function actualizarTabla(){
     tabla.innerHTML = ""
     total.innerText = 0
-    carrito.forEach((item, index) => {
-        filaNueva(item, index);
+    carrito.forEach((item) => {
+        filaNueva(item);
     })
 }
 
@@ -72,19 +72,23 @@ function filaNueva(item, index) {
     let td = document.createElement("td")
 
     td.classList.add ("text-black");
-    td.textContent = item.nombre;
+    td.textContent = item.nombre.nombre;
     fila.appendChild(td);
 
+
+    td.classList.add('text-black');
+    td = document.createElement('td');
+    td.textContent = item.nombre.precio;
+    fila.appendChild(td);
 
     td.classList.add('text-black');
     td = document.createElement('td');
     td.textContent = item.cantidad;
     fila.appendChild(td);
   
-    td.classList.add('text-black');
-    td = document.createElement('td');
-    td.textContent = item.precio;
-    fila.appendChild(td);
+
+  
+ 
 
     td = document.createElement('td');
     const botonEliminar = document.createElement('button');
@@ -101,8 +105,9 @@ function filaNueva(item, index) {
     fila.appendChild(td);
     tabla.appendChild(fila);
 
-    total.textContent = carrito.reduce((acc,item) => acc + item.precio * item.cantidad, 0);
-    
+    let totalProducto = carrito.reduce((acc,item) => acc + item.precio * item.cantidad, 0);
+    console.log(totalProducto)
+   
 }
 
 function escucharEventos() {
@@ -121,4 +126,9 @@ function escucharEventos() {
 		localStorage.setItem("carrito", JSON.stringify(carrito));
 	});
 }
+
+
 escucharEventos();
+
+
+
