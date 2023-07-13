@@ -3,10 +3,11 @@ class Raqueta {
     precio;
     marca;
 
-    constructor(nombre, precio, marca){
+    constructor(nombre, precio, marca, cantidad=1){
         this.nombre = nombre;
         this.precio = precio;
         this.marca = marca;
+        this.cantidad = cantidad
     }
 }
 
@@ -62,8 +63,8 @@ function dropdown() {
 function actualizarTabla(){
     tabla.innerHTML = ""
     total.innerText = 0
-    carrito.forEach((item) => {
-        filaNueva(item);
+    carrito.forEach((item, index) => {
+        filaNueva(item, index);
     })
 }
 
@@ -108,9 +109,8 @@ function filaNueva(item, index) {
     total.textContent = carrito.reduce((acc,item) => acc + item.nombre.precio * item.cantidad, 0);
 }
 
-function escucharEventos() {
-	document.addEventListener("DOMContentLoaded", traerRaqueta);
-	agregarRaqueta.addEventListener("submit", (e) => {
+
+agregarRaqueta.addEventListener("submit", (e) => {
 		e.preventDefault();
 		const raquetaSeleccionada = inventario[+seleccionarProductos.value];
 		const producto = carrito.find((producto) => producto.nombre.nombre === raquetaSeleccionada.nombre);
@@ -120,13 +120,13 @@ function escucharEventos() {
 			const item = new Raqueta(raquetaSeleccionada, 1);
 			carrito.push(item);
 		}
+        localStorage.setItem("carrito", JSON.stringify(carrito));
 		actualizarTabla();
-		localStorage.setItem("carrito", JSON.stringify(carrito));
 	});
-}
 
 
-escucharEventos();
+traerRaqueta();
+
 
 
 
