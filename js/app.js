@@ -105,9 +105,7 @@ function filaNueva(item, index) {
     fila.appendChild(td);
     tabla.appendChild(fila);
 
-    let totalProducto = carrito.reduce((acc,item) => acc + item.precio * item.cantidad, 0);
-    console.log(totalProducto)
-   
+    total.textContent = carrito.reduce((acc,item) => acc + item.nombre.precio * item.cantidad, 0);
 }
 
 function escucharEventos() {
@@ -115,7 +113,7 @@ function escucharEventos() {
 	agregarRaqueta.addEventListener("submit", (e) => {
 		e.preventDefault();
 		const raquetaSeleccionada = inventario[+seleccionarProductos.value];
-		const producto = carrito.find((producto) => producto.nombre === raquetaSeleccionada.nombre);
+		const producto = carrito.find((producto) => producto.nombre.nombre === raquetaSeleccionada.nombre);
 		if (producto) {
 			producto.cantidad++;
 		} else {
