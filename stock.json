@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "nombre": "Aero Pro Drive",
+        "marca": "Babolat",
+        "precio": 35000
+    },
+    {
+        "id": 2,
+        "nombre": "Extreme MP",
+        "marca": "Head",
+        "precio": 26300
+    },
+    {
+        "id": 3,
+        "nombre": "Pro Staff v13",
+        "marca": "Wilson",
+        "precio": 25000
+    },
+    {
+        "id": 4,
+        "nombre": "Speed 2022",
+        "marca": "Head",
+        "precio": 30000
+    },
+    {
+        "id": 5,
+        "nombre": "Graphene",
+        "marca": "Head",
+        "precio": 28000
+    },
+    {
+        "id": 6,
+        "nombre": "Pure Drive",
+        "marca": "Babolat",
+        "precio": 20500
+    },
+    {
+        "id": 7,
+        "nombre": "Speed Port White",
+        "marca": "Yonex",
+        "precio": 18800
+    },
+    {
+        "id": 8,
+        "nombre": "RDS 001 mid plus",
+        "marca": "Babolat",
+        "precio": 21000
+    },
+    {
+        "id": 9,
+        "nombre": "DNX 0",
+        "marca": "Volkl",
+        "precio": 19100
+    },
+    {
+        "id": 10,
+        "nombre": "Cobra",
+        "marca": "Wilson",
+        "precio": 36000
+    }
+]
