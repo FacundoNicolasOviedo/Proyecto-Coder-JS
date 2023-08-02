@@ -1,6 +1,6 @@
 
 let carrito = []
-let inventario = []
+let stock = []
 
 
 async function traerStock () {
@@ -16,12 +16,13 @@ async function traerStock () {
     dropdown()
 }
 
-localStorage.setItem("inventario", JSON.stringify(inventario));
+
 
 const tabla = document.getElementById('items');
 const seleccionarProductos = document.getElementById('productos');
 const agregarRaqueta = document.getElementById('agregar');
 const total = document.getElementById('total');
+const botonVaciar = document.getElementById('vaciar')
 
 
 function dropdown() {
@@ -70,9 +71,31 @@ function filaNueva(item, index) {
     botonEliminar.textContent = 'Eliminar Articulo';
 
     botonEliminar.onclick = () => {
-        carrito.splice (index,1);
-        actualizarTabla();
-        localStorage.setItem("carrito", JSON.stringify(carrito));
+        Swal.fire({
+            title: '¿Seguro quieres eliminar este item del carrito?',
+            showDenyButton: true,
+            confirmButtonText: 'Si',
+            denyButtonText: 'No',
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Toastify({
+                    text: 'Producto eliminado correctamente',
+                    duration: 2000,
+                    close: true,
+                    stopOnFocus: true,
+                    gravity: 'bottom',
+                    style: {
+                        background: "linear-gradient(to right, #c61d1d, #c4821d)",
+                      },
+                }).showToast();
+                carrito.splice (index,1);
+                actualizarTabla();
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+            } else if (result.isDenied) {
+              
+            }
+          })
+       
     }
 
     td.appendChild(botonEliminar);
@@ -84,6 +107,16 @@ function filaNueva(item, index) {
 
 
 agregarRaqueta.addEventListener("submit", (e) => {
+    Toastify({
+        text: 'Producto agregado correctamente',
+        duration: 2000,
+        close: true,
+        stopOnFocus: true,
+        gravity: 'bottom',
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+          },
+    }).showToast();
 		e.preventDefault();
 		const raquetaSeleccionada = stock[+seleccionarProductos.value];
 		const producto = carrito.find((producto) => producto.nombre.nombre === raquetaSeleccionada.nombre);
@@ -96,7 +129,25 @@ agregarRaqueta.addEventListener("submit", (e) => {
         localStorage.setItem("carrito", JSON.stringify(carrito));
 		actualizarTabla();
 	});
+    
+botonVaciar.addEventListener('click', vaciarCarrito)    
 
+
+function vaciarCarrito () {
+    Swal.fire({
+        title: '¿Seguro quieres vaciar el carrito?',
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'No',
+      }).then((result) => {
+        if (result.isConfirmed) {
+            carrito = []
+            actualizarTabla();
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+        }
+      })
+   
+}
 
 traerStock();
 
